@@ -1,0 +1,27 @@
+{
+  "name": "@xwat/wasm-tools",
+  "version": "0.2.2",
+  "description": "@xwat/wasm-tools",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "files": ["dist"],
+  "scripts": {
+    "build:wasm": "wasm-pack build --release --target web --out-dir ./web",
+    "build:sync": "wasm-pack-sync ./web -d dist --name index",
+    "build": "pnpm run build:wasm && pnpm run build:sync",
+    "lint:fix": "biome check --apply-unsafe  ./",
+    "format": "biome format --write  ./",
+    "test": "vitest test",
+    "bench:run": "vitest bench --run",
+    "clear": "rm -rf node_modules && pnpm -r exec rm -rf node_modules dist es5",
+    "clear-dist": "rm -rf dist es5 && pnpm -r exec rm -rf dist es5",
+    "release": "pnpm publish   --access public",
+    "release-alpha": "pnpm publish   --access public --tag alpha"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "name": "@xwat/bench",
+  "version": "0.2.2",
+  "private": true,
+  "license": "MIT",
+  "main": "index.js",
+  "scripts": {
+    "test": "vitest",
+    "bench": "vitest bench",
+    "bench:run": "vitest bench --run",
+    "bench:ui": "vitest bench --ui",
+    "test:ui": "vitest --ui",
+    "test:run": "vitest run"
+  },
+  "devDependencies": {
+
+  },
+  "stackblitz": {
+    "startCommand": "npm run bench:ui"
+  },
+  "dependencies": {
+    "@xwat/lena": "workspace:*",
+    "@xwat/wabt": "workspace:*",
+    "@xwat/fib": "workspace:*",
+    "@xwat/xwat": "workspace:*",
+    "sharp": "^0.33.3"
+  }
+}

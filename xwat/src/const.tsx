@@ -1,0 +1,5 @@
+export const Magic = [0x00, 0x61, 0x73, 0x6d]
+
+export const Version = [0x01, 0x00, 0x00, 0x00]
+
+export const InstMap: Record<string, number> = {}

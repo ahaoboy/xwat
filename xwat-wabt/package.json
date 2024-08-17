@@ -1,0 +1,23 @@
+{
+  "name": "@xwat/wabt",
+  "version": "0.2.2",
+  "description": "@xwat/wabt",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "files": ["dist"],
+  "scripts": {
+    "build": "tsc -p ./tsconfig.build.json",
+    "dev": "tsc -p ./tsconfig.build.json -w",
+    "test": "vitest"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+
+  },
+  "dependencies": {
+    "@xwat/xwat": "workspace:*",
+    "@xwat/wasm-tools": "workspace:*"
+  }
+}

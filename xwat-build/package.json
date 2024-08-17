@@ -1,0 +1,25 @@
+{
+  "name": "@xwat/build",
+  "version": "0.2.2",
+  "description": "@xwat/build",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsc -p ./tsconfig.build.json",
+    "dev": "tsc -p ./tsconfig.build.json -w",
+    "bench": "vitest bench",
+    "build:wasm": "tsx ./build/index.tsx && tsc -p ./tsconfig.wasm.json",
+    "test": "vitest"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@xwat/wasm-tools": "workspace:*",
+    "@xwat/xwat": "workspace:*",
+    "e-base64": "^0.1.2"
+  }
+}

@@ -1,0 +1,36 @@
+{
+  "name": "@xwat/lena",
+  "version": "0.2.2",
+  "description": "@xwat/lena",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "files": ["dist"],
+  "scripts": {
+    "build": "tsc -p ./tsconfig.build.json && npm run build:wasm",
+    "build-tsx": "tsx --help",
+    "build:wasm": "esbuild ./build/index.tsx --bundle --platform=node | node && tsc -p ./tsconfig.wasm.json",
+    "dev": "tsc -p ./tsconfig.build.json -w",
+    "test": "vitest",
+    "bench": "vitest bench"
+  },
+  "exports": {
+    ".": "./dist/index.js",
+    "./wasm/*": "./dist/wasm/*.js"
+  },
+  "typesVersions": {
+    "*": {
+      ".": ["./dist/index.d.ts"],
+      "./wasm/*": ["./wasm/*.d.ts"]
+    }
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+  },
+  "dependencies": {
+    "@xwat/build": "workspace:*",
+    "@xwat/wabt": "workspace:*",
+    "@xwat/xwat": "workspace:*"
+  }
+}

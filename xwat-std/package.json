@@ -1,0 +1,24 @@
+{
+  "name": "@xwat/std",
+  "private": "true",
+  "version": "0.2.2",
+  "description": "@xwat/std",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "files": ["dist"],
+  "scripts": {
+    "build": "esbuild ./src/* --outdir=dist",
+    "dev": "esbuild ./src --outdir=dist",
+    "test": "vitest"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+  },
+  "dependencies": {
+    "@xwat/xwat": "workspace:*",
+    "@xwat/wabt": "workspace:*",
+    "@xwat/build": "workspace:*"
+  }
+}

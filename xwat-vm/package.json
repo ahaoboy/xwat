@@ -1,0 +1,23 @@
+{
+  "name": "@xwat/vm",
+  "private": "true",
+  "version": "0.2.2",
+  "description": "@xwat/vm",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "files": ["dist"],
+  "scripts": {
+    "build": "esbuild ./src/* --outdir=dist",
+    "dev": "esbuild ./src --outdir=dist",
+    "test": "npm run build && node ./dist/index.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+  },
+  "dependencies": {
+    "@xwat/build": "workspace:*",
+    "@xwat/xwat": "workspace:*"
+  }
+}

@@ -1,0 +1,40 @@
+{
+  "name": "xwat",
+  "private": true,
+  "version": "0.2.2",
+  "description": "",
+  "main": "index.js",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "lint:fix": "biome lint ./ --write --unsafe",
+    "format": "biome format --write  ./",
+    "build:wasm": "pnpm run -r build:wasm",
+    "build": "pnpm run -r build",
+    "test": "pnpm run --parallel test",
+    "clear": "rm -rf node_modules && pnpm -r exec rm -rf node_modules dist es5",
+    "clear-dist": "rm -rf dist es5 && pnpm -r exec rm -rf dist es5",
+    "release": "pnpm publish -r --access public",
+    "release-alpha": "pnpm publish -r --access public --tag alpha"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@biomejs/biome": "^1.8.3",
+    "@types/node": "22.4.0",
+    "@vitest/ui": "2.0.3",
+    "biome": "^0.3.3",
+    "esbuild": "0.23.0",
+    "gl-matrix": "^3.4.3",
+    "gl-matrix-wasm": "^0.8.0",
+    "sharp": "^0.33.5",
+    "tsx": "^4.17.0",
+    "typescript": "^5.5.4",
+    "vite": "5.3.4",
+    "vitest": "2.0.3",
+    "wabt": "^1.0.36",
+    "wasm-pack-sync": "0.1.7"
+  }
+}

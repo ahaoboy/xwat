@@ -1,0 +1,35 @@
+{
+  "name": "@xwat/md5",
+  "version": "0.2.2",
+  "private": true,
+  "description": "@xwat/md5",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "files": ["dist"],
+  "scripts": {
+    "build": "tsc -p ./tsconfig.build.json",
+    "dev": "tsc -p ./tsconfig.build.json -w",
+    "bench": "tsx ./bench/invert.bench.ts",
+    "test": "vitest"
+  },
+  "exports": {
+    ".": "./dist/index.js",
+    "./wasm/*": "./dist/wasm/*.js"
+  },
+  "typesVersions": {
+    "*": {
+      ".": ["./dist/index.d.ts"],
+      "./wasm/*": ["./wasm/*.d.ts"]
+    }
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+  },
+  "dependencies": {
+    "@xwat/build": "workspace:*",
+    "@xwat/wabt": "workspace:*",
+    "@xwat/xwat": "workspace:*"
+  }
+}

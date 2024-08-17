@@ -1,0 +1,21 @@
+{
+  "name": "@xwat/leb128",
+  "private": "true",
+  "version": "0.2.2",
+  "description": "@xwat/leb128",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "files": ["dist"],
+  "scripts": {
+    "build": "tsc -p ./tsconfig.build.json",
+    "dev": "tsc -p ./tsconfig.build.json -w",
+    "bench": "vitest bench",
+    "test": "vitest"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+  },
+  "dependencies": {}
+}

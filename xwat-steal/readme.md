@@ -1,0 +1,1 @@
+convert wat/wasm to xwat's tsx component

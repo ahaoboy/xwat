@@ -1,0 +1,21 @@
+{
+  "name": "@xwat/xwat",
+  "version": "0.2.2",
+  "description": "@xwat/xwat",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "files": ["dist"],
+  "scripts": {
+    "build": "tsc -p ./tsconfig.build.json",
+    "dev": "tsc -p ./tsconfig.build.json -w",
+    "test": "vitest",
+    "bench": "vitest bench"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+
+  },
+  "dependencies": {}
+}

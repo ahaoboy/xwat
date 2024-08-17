@@ -1,0 +1,41 @@
+{
+  "name": "@xwat/wasi",
+  "version": "0.2.2",
+  "description": "@xwat/wasi",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsc -p ./tsconfig.build.json",
+    "dev": "tsc -p ./tsconfig.build.json -w",
+    "bench": "vitest bench",
+    "build:wasm": "tsx ./build/index.tsx && tsc -p ./tsconfig.wasm.json",
+    "wasmtime": "pnpm run build:wasm && wasmtime ./wasm/xwat-wasi.wasm",
+    "test": "vitest"
+  },
+  "exports": {
+    ".": "./dist/index.js",
+    "./wasm/*": "./dist/wasm/*.js"
+  },
+  "typesVersions": {
+    "*": {
+      ".": [
+        "./dist/index.d.ts"
+      ],
+      "./wasm/*": [
+        "./wasm/*.d.ts"
+      ]
+    }
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {},
+  "dependencies": {
+    "@xwat/build": "workspace:*",
+    "@xwat/wabt": "workspace:*",
+    "@xwat/xwat": "workspace:*"
+  }
+}
