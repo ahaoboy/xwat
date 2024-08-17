@@ -8,7 +8,7 @@
     "dist"
   ],
   "scripts": {
-    "build": "tsc -p ./tsconfig.build.json",
+    "build": "tsc -p ./tsconfig.build.json && npm run build:wasm",
     "dev": "tsc -p ./tsconfig.build.json -w",
     "bench": "vitest bench",
     "build:wasm": "tsx ./build/index.tsx && tsc -p ./tsconfig.wasm.json",

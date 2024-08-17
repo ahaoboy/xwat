@@ -1,64 +1,94 @@
+
 export type Instance = WebAssembly.Instance & {
   exports: {
-    Add(arg0: number, arg1: number): number
-  }
-}
+    Add(arg0: number, arg1: number): number;
+  };
+};
 
-export type Env = WebAssembly.Imports & {}
+export type Env = WebAssembly.Imports & {};
 
-const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/"
 
-// Use a lookup table to find the index.
-const lookup = typeof Uint8Array === "undefined" ? [] : new Uint8Array(256)
-for (let i = 0; i < chars.length; i++) {
-  lookup[chars.charCodeAt(i)] = i
-}
+const __lookup__ = new Uint8Array([
+  0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+  0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 62, 0, 0, 0, 63, 52, 53,
+  54, 55, 56, 57, 58, 59, 60, 61, 0, 0, 0, 0, 0, 0, 0, 0, 1, 2, 3, 4, 5, 6, 7,
+  8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 0, 0, 0,
+  0, 0, 0, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42,
+  43, 44, 45, 46, 47, 48, 49, 50, 51, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+  0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+  0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+  0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+  0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+  0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+]);
 
-function decode(base64: string): ArrayBuffer {
-  let bufferLength = base64.length * 0.75
-  const len = base64.length
-  let p = 0
 
-  if (base64[base64.length - 1] === "=") {
-    bufferLength--
-    if (base64[base64.length - 2] === "=") {
-      bufferLength--
+function __decode_base64__(base64: string): Uint8Array {
+  const len = base64.length;
+  let bufferLength = (len >> 2) * 3;
+  let p = 0;
+
+  let fillZeros = 0;
+  if (base64[len - 1] === "=") {
+    bufferLength--;
+    fillZeros = 1;
+    if (base64[len - 2] === "=") {
+      bufferLength--;
+      fillZeros = 2;
     }
   }
 
-  const arraybuffer = new ArrayBuffer(bufferLength)
-  const bytes = new Uint8Array(arraybuffer)
+  const bytes = new Uint8Array(bufferLength);
 
-  for (let i = 0; i < len; i += 4) {
-    const encoded1 = lookup[base64.charCodeAt(i)]
-    const encoded2 = lookup[base64.charCodeAt(i + 1)]
-    const encoded3 = lookup[base64.charCodeAt(i + 2)]
-    const encoded4 = lookup[base64.charCodeAt(i + 3)]
+  const strLen = fillZeros ? len - 4 : len;
 
-    bytes[p++] = (encoded1 << 2) | (encoded2 >> 4)
-    bytes[p++] = ((encoded2 & 15) << 4) | (encoded3 >> 2)
-    bytes[p++] = ((encoded3 & 3) << 6) | (encoded4 & 63)
+  for (let i = 0; i < strLen; i += 4) {
+    const encoded1 = __lookup__[base64.charCodeAt(i)];
+    const encoded2 = __lookup__[base64.charCodeAt(i + 1)];
+    const encoded3 = __lookup__[base64.charCodeAt(i + 2)];
+    const encoded4 = __lookup__[base64.charCodeAt(i + 3)];
+
+    bytes[p++] = (encoded1 << 2) | (encoded2 >> 4);
+    bytes[p++] = ((encoded2 & 15) << 4) | (encoded3 >> 2);
+    bytes[p++] = ((encoded3 & 3) << 6) | (encoded4 & 63);
   }
 
-  return arraybuffer
+  if (fillZeros === 1) {
+    const encoded1 = __lookup__[base64.charCodeAt(strLen)];
+    const encoded2 = __lookup__[base64.charCodeAt(strLen + 1)];
+    const encoded3 = __lookup__[base64.charCodeAt(strLen + 2)];
+    bytes[p++] = (encoded1 << 2) | (encoded2 >> 4);
+    bytes[p++] = ((encoded2 & 15) << 4) | (encoded3 >> 2);
+  } else if (fillZeros === 2) {
+    const encoded1 = __lookup__[base64.charCodeAt(strLen)];
+    const encoded2 = __lookup__[base64.charCodeAt(strLen + 1)];
+    bytes[p++] = (encoded1 << 2) | (encoded2 >> 4);
+  }
+  return bytes;
 }
 
-const base64 =
-  "AGFzbQEAAAABBwFgAn9/AX8DAgEABwcBA0FkZAAACgkBBwAgASAAagsADQRuYW1lAQYBAANBZGQ="
 
-export default function (env: Env = {}) {
-  const buffer = decode(base64)
+const __wasm_base64__ = "AGFzbQEAAAABBwFgAn9/AX8DAgEABwcBA0FkZAAACgkBBwAgASAAagsADQRuYW1lAQYBAANBZGQ=";
 
-  const wasmModule = new WebAssembly.Module(buffer)
-  const instance = new WebAssembly.Instance(wasmModule, env) as Instance
 
+export default function(env: Env = {}){
+  
+  const buffer = __decode_base64__(__wasm_base64__);
+  
+
+  const wasmModule = new WebAssembly.Module(buffer);
+  const instance = new WebAssembly.Instance(wasmModule, env) as Instance;
+
+  
   function Add(arg0: number, arg1: number): number {
-    const fn = instance.exports.Add
-    return fn(arg0, arg1)
+    const fn = instance.exports.Add;
+    return fn(arg0, arg1);
   }
+  
 
   return {
     instance,
-    Add,
-  }
+    Add
+  };
 }
+
