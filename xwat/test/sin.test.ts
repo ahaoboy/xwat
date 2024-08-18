@@ -1,9 +1,11 @@
 import { readFileSync } from "node:fs"
 import { createWasm } from "@xwat/wabt"
 import { expect, test } from "vitest"
+import path from 'path'
 
 test("Add", async () => {
-  const code = readFileSync("./wat/sin.wat", "utf-8")
+  const p = path.join(import.meta.dirname,"../wat/sin.wat")
+  const code = readFileSync(p, "utf-8")
   const wasm = await createWasm<{ sin: (a: number) => number }>(code)
   const { sin } = wasm.exports
   expect(sin(Math.PI / 2)).toEqual(1)

@@ -6,7 +6,7 @@
   "types": "dist/index.d.ts",
   "files": ["dist"],
   "scripts": {
-    "build": "tsc -p ./tsconfig.build.json",
+    "build": "tsc -p ./tsconfig.build.json && npm run build:wasm",
     "dev": "tsc -p ./tsconfig.build.json -w",
     "bench": "vitest bench",
     "build:wasm": "esbuild --bundle --platform=node ./build/index.tsx | node && tsc -p ./tsconfig.wasm.json",
