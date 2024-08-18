@@ -14,8 +14,7 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "devDependencies": {
-  },
+  "devDependencies": {},
   "dependencies": {
     "@xwat/xwat": "workspace:*",
     "@xwat/wabt": "workspace:*",

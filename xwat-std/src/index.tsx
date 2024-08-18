@@ -1,1 +1,1 @@
-export * from './gcd'
+export * from "./gcd"

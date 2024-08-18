@@ -1069,7 +1069,7 @@ export const Br = (
   }
 }
 export class VM {
-  constructor(public stack: number[] = []) { }
+  constructor(public stack: number[] = []) {}
   run(node: Node) {
     node.run(this)
   }

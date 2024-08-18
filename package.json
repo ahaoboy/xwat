@@ -4,9 +4,7 @@
   "version": "0.2.2",
   "description": "",
   "main": "index.js",
-  "files": [
-    "dist"
-  ],
+  "files": ["dist"],
   "scripts": {
     "lint:fix": "biome lint ./ --write --unsafe",
     "format": "biome format --write  ./",
@@ -25,7 +23,6 @@
     "@biomejs/biome": "^1.8.3",
     "@types/node": "22.4.0",
     "@vitest/ui": "2.0.3",
-    "biome": "^0.3.3",
     "esbuild": "0.23.0",
     "gl-matrix": "^3.4.3",
     "gl-matrix-wasm": "^0.8.0",

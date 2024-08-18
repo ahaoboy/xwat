@@ -1,6 +1,6 @@
 import LenaWasm from "@xwat/lena/wasm/index"
 import sharp from "sharp"
-import { bench, describe, } from "vitest"
+import { bench, describe } from "vitest"
 
 function jsGray(
   out: Uint8Array,

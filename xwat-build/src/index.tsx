@@ -20,9 +20,9 @@ const typeMap: Record<string, string> = {
 }
 
 function tab(s: string, deep = 2) {
-  const prefix = ' '.repeat(deep)
-  if (s.includes('\n')) {
-    return prefix + s.replaceAll('\n', `\n${prefix}`)
+  const prefix = " ".repeat(deep)
+  if (s.includes("\n")) {
+    return prefix + s.replaceAll("\n", `\n${prefix}`)
   }
 
   return prefix + s
@@ -84,15 +84,15 @@ export async function build(node: Node, option: Partial<BuildOption> = {}) {
         typeof i.prop.value === "function" ? i.prop.value().prop : i.prop.value
       return `
 function ${name}(${params
-          .map((i: Node, k: number) => {
-            const argName = i.prop.name ?? `arg${k}`
-            return `${argName}: ${typeMap[i.prop.type]}`
-          })
-          .join(", ")}): ${typeMap[ret?.prop.type]} {
+        .map((i: Node, k: number) => {
+          const argName = i.prop.name ?? `arg${k}`
+          return `${argName}: ${typeMap[i.prop.type]}`
+        })
+        .join(", ")}): ${typeMap[ret?.prop.type]} {
   const fn = instance.exports.${name};
   return fn(${params
-          .map((i: Node, k: number) => i.prop.name ?? `arg${k}`)
-          .join(", ")});
+    .map((i: Node, k: number) => i.prop.name ?? `arg${k}`)
+    .join(", ")});
 }
 `
     })

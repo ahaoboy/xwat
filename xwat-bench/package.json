@@ -12,9 +12,7 @@
     "test:ui": "vitest --ui",
     "test:run": "vitest run"
   },
-  "devDependencies": {
-
-  },
+  "devDependencies": {},
   "stackblitz": {
     "startCommand": "npm run bench:ui"
   },
