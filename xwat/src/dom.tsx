@@ -1,3 +1,18 @@
+import {
+  f32_op0,
+  f32x4_op0,
+  f64_op0,
+  f64x2_op0,
+  i16x8_op0,
+  i32_op0,
+  i32x4_op0,
+  i64_op0,
+  i8x16_op0,
+  stmt_ops,
+  v128_op0,
+} from "./const"
+import { createOp0 } from "./op"
+
 export type Component = (prop: any, children: Node[]) => Node
 
 export function $(fn: Component, prop: any = {}, ...children: Node[]): Node {
@@ -25,198 +40,27 @@ export type Node = {
   children: Node[]
   run: (vm: VM) => void
 }
-
 export type NodeProp = Record<string, any>
 
-function helper(t: "i32" | "i64" | "f32" | "f64") {
-  return {
-    add: (prop: NodeProp, children: Node[] = []) => ({
-      prop,
-      children,
-      op: `${t}.add`,
-    }),
-    abs: (prop: NodeProp, children: Node[] = []) => ({
-      prop,
-      children,
-      op: `${t}.abs`,
-    }),
-    le: (prop: NodeProp, children: Node[] = []) => ({
-      prop,
-      children,
-      op: `${t}.le`,
-    }),
-    mul: (prop: NodeProp, children: Node[] = []) => ({
-      prop,
-      children,
-      op: `${t}.mul`,
-    }),
-    sub: (prop: NodeProp, children: Node[] = []) => ({
-      prop,
-      children,
-      op: `${t}.sub`,
-    }),
-    div: (prop: NodeProp, children: Node[] = []) => ({
-      prop,
-      children,
-      op: `${t}.div`,
-    }),
-    div_s: (prop: NodeProp, children: Node[] = []) => ({
-      prop,
-      children,
-      op: `${t}.div_s`,
-    }),
-    div_u: (prop: NodeProp, children: Node[] = []) => ({
-      prop,
-      children,
-      op: `${t}.div_u`,
-    }),
-    ceil: (prop: NodeProp, children: Node[] = []) => ({
-      prop,
-      children,
-      op: `${t}.ceil`,
-    }),
-    floor: (prop: NodeProp, children: Node[] = []) => ({
-      prop,
-      children,
-      op: `${t}.floor`,
-    }),
-    sqrt: (prop: NodeProp, children: Node[] = []) => ({
-      prop,
-      children,
-      op: `${t}.sqrt`,
-    }),
-    neg: (prop: NodeProp, children: Node[] = []) => ({
-      prop,
-      children,
-      op: `${t}.neg`,
-    }),
-    rem_s: (prop: NodeProp, children: Node[] = []) => ({
-      prop,
-      children,
-      op: `${t}.rem_s`,
-    }),
-    rem_u: (prop: NodeProp, children: Node[] = []) => ({
-      prop,
-      children,
-      op: `${t}.rem_u`,
-    }),
-    nearest: (prop: NodeProp, children: Node[] = []) => ({
-      prop,
-      children,
-      op: `${t}.nearest`,
-    }),
-    min: (prop: NodeProp, children: Node[] = []) => ({
-      prop,
-      children,
-      op: `${t}.min`,
-    }),
-    max: (prop: NodeProp, children: Node[] = []) => ({
-      prop,
-      children,
-      op: `${t}.max`,
-    }),
-    sin: (prop: NodeProp, children: Node[] = []) => ({
-      prop,
-      children,
-      op: `${t}.sin`,
-    }),
-    cos: (prop: NodeProp, children: Node[] = []) => ({
-      prop,
-      children,
-      op: `${t}.cos`,
-    }),
-    and: (prop: NodeProp, children: Node[] = []) => ({
-      prop,
-      children,
-      op: `${t}.and`,
-    }),
-    eq: (prop: NodeProp, children: Node[] = []) => ({
-      prop,
-      children,
-      op: `${t}.eq`,
-    }),
-    eqz: (prop: NodeProp, children: Node[] = []) => ({
-      prop,
-      children,
-      op: `${t}.eq`,
-    }),
-    lt_u: (prop: NodeProp, children: Node[] = []) => ({
-      prop,
-      children,
-      op: `${t}.lt_u`,
-    }),
-    le_u: (prop: NodeProp, children: Node[] = []) => ({
-      prop,
-      children,
-      op: `${t}.le_u`,
-    }),
-    lt_s: (prop: NodeProp, children: Node[] = []) => ({
-      prop,
-      children,
-      op: `${t}.lt_s`,
-    }),
-    gt_s: (prop: NodeProp, children: Node[] = []) => ({
-      prop,
-      children,
-      op: `${t}.gt_s`,
-    }),
-    gt_u: (prop: NodeProp, children: Node[] = []) => ({
-      prop,
-      children,
-      op: `${t}.gt_u`,
-    }),
-    le_s: (prop: NodeProp, children: Node[] = []) => ({
-      prop,
-      children,
-      op: `${t}.le_s`,
-    }),
-    const: (prop: ConstProp, children: Node[] = []) => ({
-      op: `${t}.const`,
-      prop,
-      children,
-    }),
-    shl: (prop: { memory?: any }, children: Node[] = []) => ({
-      op: `${t}.shl`,
-      prop,
-      children,
-    }),
-    load: (prop: { memory?: any }, children: Node[] = []) => ({
-      op: `${t}.load`,
-      prop,
-      children,
-    }),
-    store: (prop: { memory?: any }, children: Node[] = []) => ({
-      op: `${t}.store`,
-      prop,
-      children,
-    }),
-    load32_u: (prop: { memory?: any }, children: Node[] = []) => ({
-      op: `${t}.load32_u`,
-      prop,
-      children,
-    }),
-    load8_u: (prop: { memory?: any }, children: Node[] = []) => ({
-      op: `${t}.load8_u`,
-      prop,
-      children,
-    }),
-    store8: (prop: { memory?: any }, children: Node[] = []) => ({
-      op: `${t}.store8`,
-      prop,
-      children,
-    }),
-    store32: (prop: { memory?: any }, children: Node[] = []) => ({
-      op: `${t}.store32`,
-      prop,
-      children,
-    }),
-  }
-}
-// i32,i64,f32,f64
-export const i32 = helper("i32")
-export const i64 = helper("i64")
-export const f32 = helper("f32")
-export const f64 = helper("f64")
+export const i32 = createOp0("i32", i32_op0)
+export const i64 = createOp0("i64", i64_op0)
+export const f32 = createOp0("f32", f32_op0)
+export const f64 = createOp0("f64", f64_op0)
+
+export const Op0List = [
+  ...i32_op0.map((i) => `i32.${i}`),
+  ...i64_op0.map((i) => `i64.${i}`),
+  ...f32_op0.map((i) => `f32.${i}`),
+  ...f64_op0.map((i) => `f64.${i}`),
+
+  ...i8x16_op0.map((i) => `i8x16.${i}`),
+  ...i16x8_op0.map((i) => `i16x8.${i}`),
+  ...i32x4_op0.map((i) => `i32x4.${i}`),
+  ...f32x4_op0.map((i) => `f32x4.${i}`),
+  ...f64x2_op0.map((i) => `f64x2.${i}`),
+  ...v128_op0.map((i) => `v128.${i}`),
+  ...stmt_ops,
+]
 
 function tab(s: string, depth: number) {
   return s
@@ -250,6 +94,7 @@ export function render(node: Node): string {
         })
         .join("\n")
     }
+
     switch (root.op) {
       case "table": {
         return `(table ${root.prop.size} funcref)`
@@ -279,11 +124,6 @@ export function render(node: Node): string {
           .join(" ")
         const retCode = root.prop.ret ? "(result i32)" : ""
         return `(type $${tyName} (func ${paramCode}  ${retCode}))`
-      }
-      case "select":
-      case "nop":
-      case "drop": {
-        return tab(`${root.op}`, depth)
       }
       case "start": {
         exportNodes.add(root.prop.value)
@@ -394,10 +234,6 @@ export function render(node: Node): string {
           }
         }
       }
-      case "i64.shl":
-      case "i32.shl": {
-        return `${root.op}`
-      }
       case "i32.store":
       case "i32.load": {
         if (root.prop?.memory) {
@@ -413,114 +249,6 @@ export function render(node: Node): string {
         return `${root.op} ${root.prop.value}`
       }
 
-      case "i8x16.sub":
-      case "i8x16.sub_sat_u":
-      case "i8x16.sub_sat_s":
-
-      case "f32x4.add":
-      case "f32x4.mul":
-      case "v128.load":
-      case "v128.store":
-
-      case "i32.add":
-      case "i32.div_s":
-      case "i32.div_u":
-      case "i32.eq":
-      case "i32.or":
-      case "i32.and":
-      case "i32.sub":
-      case "i32.mul":
-      case "i32.le_s":
-      case "i32.le_u":
-      case "i32.lt_s":
-      case "i32.load8_u":
-      case "i32.store8":
-      case "i32.lt_u":
-      case "i32.gt_s":
-      case "i32.gt_u":
-      case "i32.rem_s":
-      case "i32.rem_u":
-
-      case "i64.div_s":
-      case "i64.div_u":
-      case "i64.gt_s":
-      case "i64.gt_u":
-      case "i64.add":
-      case "i64.store":
-      case "i64.eq":
-      case "i64.and":
-      case "i64.or":
-      case "i64.sub":
-      case "i64.mul":
-      case "i64.le_s":
-      case "i64.le_u":
-      case "i64.lt_s":
-      case "i64.load8_u":
-      case "i64.load32_u":
-      case "i64.store8":
-      case "i64.store32":
-      case "i64.lt_u":
-
-      case "f32.add":
-      case "f32.le":
-      case "f32.abs":
-      case "f32.eq":
-      case "f32.load":
-      case "f32.store":
-      case "f32.sub":
-      case "f32.mul":
-      case "f32.le_s":
-      case "f32.le_u":
-      case "f32.lt_s":
-      case "f32.load8_u":
-      case "f32.load32_u":
-      case "f32.store8":
-      case "f32.store32":
-      case "f32.div":
-      case "f32.lt_u":
-      case "f32.ceil":
-      case "f32.floor":
-      case "f32.min":
-      case "f32.max":
-      case "f32.sqrt":
-      case "f32.nearest":
-      case "f32.neg":
-      case "f32.sin":
-      case "f32.cos":
-
-      case "f64.add":
-      case "f64.le":
-      case "f64.abs":
-      case "f64.eq":
-      case "f64.load":
-      case "f64.store":
-      case "f64.sub":
-      case "f64.mul":
-      case "f64.le_s":
-      case "f64.le_u":
-      case "f64.lt_s":
-      case "f64.load8_u":
-      case "f64.load32_u":
-      case "f64.store8":
-      case "f64.store32":
-      case "f64.div":
-      case "f64.lt_u":
-      case "f64.ceil":
-      case "f64.floor":
-      case "f64.min":
-      case "f64.max":
-      case "f64.sqrt":
-      case "f64.neg":
-      case "f64.sin":
-      case "f64.cos":
-      case "f64.nearest": {
-        const op = root.op
-        if (!root.children.length) {
-          return `${op}`
-        }
-        const s = root.children.map((i) => `(${dfs(i, depth + 1)})`).join("\n")
-        return tab(`(${op}\n${s})`, depth)
-      }
       case "call": {
         const name = root.prop.fn.name ?? root.prop.fn.prop.name
         // importNodes.add(root.prop.fn)
@@ -549,25 +277,14 @@ export function render(node: Node): string {
           root.prop.var.prop.index ?? `$${root.prop.var.prop.name}`
         return tab(`${root.op} ${varName}`, 0)
       }
-      case "local.i32": {
-        const name = root.prop.name ?? `local_${localIndex++}`
-        root.prop.name = name
-        return `local $${name} i32`
-      }
-      case "local.i64": {
-        const name = root.prop.name ?? `local_${localIndex++}`
-        root.prop.name = name
-        return `local $${name} i64`
-      }
-      case "local.f32": {
-        const name = root.prop.name ?? `local_${localIndex++}`
-        root.prop.name = name
-        return `local $${name} f32`
-      }
+      case "local.i32":
+      case "local.i64":
+      case "local.f32":
       case "local.f64": {
+        const ty = root.op.split(".")[1]
         const name = root.prop.name ?? `local_${localIndex++}`
         root.prop.name = name
-        return `local $${name} f64`
+        return `local $${name} ${ty}`
       }
       case "export": {
         const name = root.prop.value.name
@@ -739,6 +456,16 @@ ${stmtStr}`
         return `(data (i32.const ${root.prop.index ?? 0}) "${root.prop.value}")`
       }
       default: {
+        if (Op0List.includes(root.op)) {
+          const op = root.op
+          if (!root.children.length) {
+            return `${op}`
+          }
+          const s = root.children
+            .map((i) => `(${dfs(i, depth + 1)})`)
+            .join("\n")
+          return tab(`(${op}\n${s})`, depth)
+        }
         console.log("root todo: ", root)
         throw new Error("todo")
       }
