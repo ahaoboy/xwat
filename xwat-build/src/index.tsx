@@ -30,7 +30,7 @@ function tab(s: string, deep = 2) {
 
 export async function build(node: Node, option: Partial<BuildOption> = {}) {
   const code = render(node)
-  console.log(code)
+  // console.log(code)
   const buffer = parse(code)
   const { name, outDir, single, target, sync } = {
     name: "index",

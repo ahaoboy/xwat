@@ -1,6 +1,5 @@
 import { createWasm } from "@xwat/wabt"
 import { expect, test, vi } from "vitest"
-import { k } from "vitest/dist/reporters-LqC_WI4d"
 import Mod from "../example/memory-inv"
 
 test("LogMemory", async () => {

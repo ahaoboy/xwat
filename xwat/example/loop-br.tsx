@@ -1,24 +1,15 @@
 import {
   $,
-  Block,
-  Br,
   BrIf,
-  Break,
   Call,
-  Else,
   Export,
   Func,
-  If,
   Import,
   Loop,
   Module,
-  Return,
-  Then,
   i32,
   local,
   param,
-  render,
-  result,
 } from "../src"
 
 const log = <Func name="log" params={[<param.i32 />]} />

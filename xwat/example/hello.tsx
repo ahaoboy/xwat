@@ -1,16 +1,4 @@
-import {
-  $,
-  Data,
-  Export,
-  Func,
-  Memory,
-  Module,
-  i32,
-  local,
-  param,
-  render,
-  result,
-} from "../src"
+import { $, Data, Export, Memory, Module } from "../src"
 
 const $mem = <Memory name="mem" pageSize={1} />
 export default (

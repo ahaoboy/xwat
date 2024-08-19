@@ -1,17 +1,4 @@
-import {
-  $,
-  Call,
-  Export,
-  Func,
-  Import,
-  Module,
-  Start,
-  i32,
-  local,
-  param,
-  render,
-  result,
-} from "../src"
+import { $, Call, Func, Import, Module, Start, i32, local, param } from "../src"
 
 const $log = <Func name="log" params={[<param.i32 />]} />
 function Main() {

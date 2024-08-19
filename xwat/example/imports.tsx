@@ -1,19 +1,13 @@
 import {
   $,
   Call,
-  Else,
   Export,
   Func,
-  If,
   Import,
   Module,
-  Return,
-  Then,
   i32,
   local,
   param,
-  render,
-  result,
 } from "../src"
 
 const log = <Func name="log" params={[<param.i32 />]} />

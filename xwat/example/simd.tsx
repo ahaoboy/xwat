@@ -5,11 +5,8 @@ import {
   Memory,
   Module,
   f32x4,
-  i32,
   local,
   param,
-  render,
-  result,
   v128,
 } from "../src"
 

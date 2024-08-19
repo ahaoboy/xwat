@@ -5,10 +5,8 @@ import {
   Import,
   Module,
   global,
-  i32,
   local,
   param,
-  render,
   result,
 } from "../src"
 

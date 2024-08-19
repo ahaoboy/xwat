@@ -1,9 +1,7 @@
 import {
   $,
   Br,
-  BrIf,
   Call,
-  Else,
   Export,
   Func,
   If,
@@ -11,12 +9,9 @@ import {
   Loop,
   Module,
   Then,
-  While,
   i32,
   local,
   param,
-  render,
-  result,
 } from "../src"
 const log = <Func name="log" params={[<param.i32 />]} />
 

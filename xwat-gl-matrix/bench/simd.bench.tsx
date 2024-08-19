@@ -36,9 +36,9 @@ describe("multiplyScalarAndAdd", async () => {
   const glOut = mat2.create()
   mat2.multiplyScalarAndAdd(glOut, glA, glB, scale)
 
-  console.log(mod.mat2.toValues(watOut))
-  console.log(mod.mat2.toValues(watSimdOut))
-  console.log(glOut)
+  // console.log(mod.mat2.toValues(watOut))
+  // console.log(mod.mat2.toValues(watSimdOut))
+  // console.log(glOut)
 
   bench("gl-matrix", () => {
     mat2.multiplyScalarAndAdd(glOut, glA, glB, scale)

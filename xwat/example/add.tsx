@@ -1,14 +1,4 @@
-import {
-  $,
-  Export,
-  Func,
-  Module,
-  i32,
-  local,
-  param,
-  render,
-  result,
-} from "../src"
+import { $, Export, Func, Module, i32, local, param, result } from "../src"
 
 function Add() {
   const $a = <param.i32 />

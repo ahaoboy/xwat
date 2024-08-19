@@ -1,17 +1,12 @@
 import {
   $,
-  Else,
   Export,
   Func,
-  If,
   Module,
-  Return,
   Select,
-  Then,
   i32,
   local,
   param,
-  render,
   result,
 } from "../src"
 

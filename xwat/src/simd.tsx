@@ -1,4 +1,15 @@
+import {
+  f32x4_op0,
+  f64x2_op0,
+  i16x8_op0,
+  i32x4_op0,
+  i8x16_op0,
+  v128_op0,
+} from "./const"
+import { createOp0 } from "./op"
+
 export const v128 = {
+  ...createOp0("v128", v128_op0),
   const(
     prop: {
       type: "f32x4" | "i32x4" | "i8x16"
@@ -35,42 +46,8 @@ export const v128 = {
   },
 }
 
-export const f32x4 = {
-  mul(prop = {}, children: Node[] = []) {
-    return {
-      op: "f32x4.mul",
-      prop,
-      children,
-    }
-  },
-  add(prop = {}, children: Node[] = []) {
-    return {
-      op: "f32x4.add",
-      prop,
-      children,
-    }
-  },
-}
-export const i8x16 = {
-  sub_sat_u(prop = {}, children: Node[] = []) {
-    return {
-      op: "i8x16.sub_sat_s",
-      prop,
-      children,
-    }
-  },
-  sub(prop = {}, children: Node[] = []) {
-    return {
-      op: "i8x16.sub",
-      prop,
-      children,
-    }
-  },
-  sub_sat_s(prop = {}, children: Node[] = []) {
-    return {
-      op: "i8x16.sub_sat_s",
-      prop,
-      children,
-    }
-  },
-}
+export const i8x16 = createOp0("i8x16", i8x16_op0)
+export const i16x8 = createOp0("i16x8", i16x8_op0)
+export const i32x4 = createOp0("i32x4", i32x4_op0)
+export const f32x4 = createOp0("f32x4", f32x4_op0)
+export const f64x2 = createOp0("f64x2", f64x2_op0)

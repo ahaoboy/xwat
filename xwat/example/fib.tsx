@@ -1,4 +1,3 @@
-import { n } from "vitest/dist/reporters-LqC_WI4d"
 import {
   $,
   Call,
@@ -8,12 +7,10 @@ import {
   Func,
   If,
   Module,
-  Return,
   Then,
   i32,
   local,
   param,
-  render,
   result,
 } from "../src"
 

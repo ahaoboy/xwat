@@ -1,21 +1,15 @@
 import {
   $,
   BrIf,
-  Call,
-  Else,
   Export,
   Func,
-  If,
   Import,
   Loop,
   Memory,
   Module,
-  Return,
-  Then,
   i32,
   local,
   param,
-  render,
   result,
 } from "../src"
 

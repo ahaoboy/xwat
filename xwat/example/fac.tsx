@@ -6,12 +6,10 @@ import {
   Func,
   If,
   Module,
-  Return,
   Then,
   i32,
   local,
   param,
-  render,
   result,
 } from "../src"
 
