@@ -1,10 +1,10 @@
 import { readFileSync } from "node:fs"
 import { createWasm } from "@xwat/wabt"
 import { expect, test } from "vitest"
-import path from 'path'
+import path from "node:path"
 
 test("Add", async () => {
-  const p = path.join(import.meta.dirname,"../wat/sin.wat")
+  const p = path.join(import.meta.dirname, "../wat/sin.wat")
   const code = readFileSync(p, "utf-8")
   const wasm = await createWasm<{ sin: (a: number) => number }>(code)
   const { sin } = wasm.exports
