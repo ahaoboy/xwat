@@ -6,6 +6,7 @@ export async function createWasm<Exports>(
   env: WebAssembly.Imports = {},
 ): Promise<WebAssembly.Instance & { exports: Exports }> {
   const code: string = typeof mod !== "string" ? render(mod) : mod
+  // console.log(code);
   const buffer = parse(code)
   const module = await WebAssembly.compile(buffer)
   const instance = await WebAssembly.instantiate(module, env)

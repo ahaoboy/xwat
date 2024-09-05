@@ -33,6 +33,6 @@
     "vite": "5.3.4",
     "vitest": "2.0.3",
     "wabt": "^1.0.36",
-    "wasm-pack-sync": "0.1.7"
+    "wasm-pack-inline": "0.1.1"
   }
 }

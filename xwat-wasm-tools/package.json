@@ -7,7 +7,7 @@
   "files": ["dist"],
   "scripts": {
     "build:wasm": "wasm-pack build --release --target web --out-dir ./web",
-    "build:sync": "wasm-pack-sync ./web -d dist --name index",
+    "build:sync": "wasm-pack-inline ./web -d dist --name index",
     "build": "pnpm run build:wasm && pnpm run build:sync",
     "lint:fix": "biome check --apply-unsafe  ./",
     "format": "biome format --write  ./",

@@ -1,8 +1,8 @@
 A toolkit for building wasm applications using TSX
 
-
+Implementing functions using TSX components
 ```tsx
-function Add() {
+export function Add() {
   const $a = <param.i32 />
   const $b = <param.i32 />
   const $ret = <result.i32 />
@@ -15,6 +15,20 @@ function Add() {
   )
 }
 ```
+
+Compile the above components into wat code
+
+```tsx
+(export "Add" (func $Add))
+(func $Add (param i32) (param i32) (result i32)
+
+    (local.get 1)
+    (local.get 0)
+    (i32.add)
+)
+```
+
+The wasm file can be directly built through the component
 
 ```ts
 import Mod from "../example/add"
